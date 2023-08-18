@@ -2,7 +2,6 @@ import sys
 import logging
 import requests
 import argparse
-import wand
 import PIL
 
 import epd7in5_V2
