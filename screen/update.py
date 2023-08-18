@@ -2,7 +2,7 @@ import sys
 import logging
 import requests
 import argparse
-import PIL
+from PIL import Image
 
 import epd7in5_V2
 
@@ -31,8 +31,8 @@ def write_to_screen(epd, image):
     if epd:
         width, height = epd.width, epd.height
 
-    h_image = PIL.Image.new('1', (width, height), 255)
-    bmp = PIL.Image.open(image)
+    h_image = Image.new('1', (width, height), 255)
+    bmp = Image.open(image)
 
     h_image.paste(bmp, (0, 0))
 
