@@ -2,8 +2,8 @@ import sys
 import logging
 import requests
 import argparse
-
-from PIL import Image
+import wand
+import PIL
 
 import epd7in5_V2
 
@@ -32,17 +32,15 @@ def write_to_screen(epd, image):
     if epd:
         width, height = epd.width, epd.height
 
-    h_image = Image.new('1', (width, height), 255)
-    bmp = Image.open(image)
+    h_image = PIL.Image.new('1', (width, height), 255)
+    bmp = PIL.Image.open(image)
 
-    # TODO: Support resizes
     h_image.paste(bmp, (0, 0))
 
     if epd:
         epd.init()
         epd.display(epd.getbuffer(h_image))
         epd.sleep()
-
 
 def close():
     print("close")
@@ -52,8 +50,6 @@ def close():
 def main():
     args = parse_args(sys.argv[1:])
     setup_logging()
-    # TODO:
-    # -download image (if necessary)
     image = args.image
     edp = init_screen(args.dry_run)
     write_to_screen(edp, image)

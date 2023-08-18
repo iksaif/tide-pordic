@@ -3,3 +3,4 @@ pillow
 spidev
 rpi.gpio
 requests
+wand
