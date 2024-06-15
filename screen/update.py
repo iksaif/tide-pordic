@@ -21,7 +21,7 @@ def init_screen(dry_run=False):
     if dry_run:
         return None
     epd = epd7in5_V2.EPD()
-    epd.init()
+    print("init", epd.init())
     epd.Clear()
     return epd
 
@@ -37,7 +37,7 @@ def write_to_screen(epd, image):
     h_image.paste(bmp, (0, 0))
 
     if epd:
-        epd.init()
+        print("init", epd.init())
         epd.display(epd.getbuffer(h_image))
         epd.sleep()
 
